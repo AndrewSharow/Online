@@ -1,0 +1,83 @@
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'basket.css' %}">
+    <title>Basket</title>
+</head>
+<body>
+    <script src="{% static 'jquery-3.6.4.js' %}"></script>
+    <script src="{% static 'script.js' %}" defer></script>
+    
+    <p><a class="Shop" href="{% url 'shop' %}">Головна</a></p>
+    <h1>Кошик</h1>
+    <div class="cart">
+        {% for product in products %}
+        <div class="product">
+            <img src="{{product.image.url}}" width="100" height="100" />
+            <div>
+                <p>{{product.name}}</p>
+                <p>{{product.description}}</p>
+                <div class="quantity">
+                    <label for="quantity1">Сума:</label>
+                    <button class="minus" value="{{product.pk}}" style="background:none; border:none; cursor: pointer;">&minus;</button>
+                    <input type="number" id="quantity1" name="quantity1" min="1" value="1" readonly>
+                    <button class="plus" value="{{product.pk}}" style="background:none; border:none; cursor: pointer;">&plus;</button>
+                </div>
+                
+                
+                <p class="price">Ціна за 1: {{product.price}}₴</p>
+                <div class="remove">
+                    <button class="del-basket" value="{{product.pk}}">Видалити</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <input class="url-get-basket" hidden value="{% url 'set_cookie' %}">
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <p><a class="Shop" href="{% url 'shop' %}">Головна</a></p>
+    <div id="container-basket">
+        {% for product in products%}
+        <div class="product">
+            <p><button class="del-basket" value="{{product.pk}}" style="background:none; border:none; cursor: pointer;">&Cross;</button></p>
+            <img src="{{product.image.url}}" width="100" height="100" />
+            <p>{{product.name}}</p>
+            <p>{{product.description}}</p>
+            <div class="amount">
+                <button class="minus" value="{{product.pk}}" style="background:none; border:none; cursor: pointer;">&minus;</button>
+                <span class="amount-span">0</span>
+                <button class="plus" value="{{product.pk}}" style="background:none; border:none; cursor: pointer;">&plus;</button>
+            </div>
+            <p>Ціна за 1: {{product.price}}₴</p>
+            <hr>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+    <input class="url-get-basket" hidden value="{% url 'set_cookie' %}"> -->
